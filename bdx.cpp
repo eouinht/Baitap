@@ -16,8 +16,14 @@ char* lenh[]= {"list",
                "***"};
 char* thoigian[]= {"06:00:00", 
                    "18:00:00"};
-const int xedap[]= {1, 2, 3, 5};
-const int xemay[]= {3, 5, 8, 13};
+const int xedap[]= {1,
+                    2, 
+                    3, 
+                    5};
+const int xemay[]= {3, 
+                    5, 
+                    8, 
+                    13};
 
 struct xe{
     char time[50];
@@ -129,15 +135,11 @@ bool IsEmpty(queue q){
 //ham nhap node vao trong queue
 void in(queue &q,char tg[], char bs[]){
     //duyet 1 lan
-   //nhap phan tu vao bien 
-        
+   //nhap phan tu vao bien   
         them_xe them;
-     
- //       cout << "Nhap du lieu cho xe" << endl;
- //       cout << "Nhap thoi gian xe vao: " << endl; 
         cin.ignore();
         strcpy(them.time,tg );
- //       cout << "Nhap bien so xe va ma ve xe ( xxxx-xxx.xx ): " << endl;
+
         strcpy(them.plate,bs);
         int index = input(q,them); 
         if(index == 0){
@@ -145,22 +147,10 @@ void in(queue &q,char tg[], char bs[]){
         }else{
             node* p;
             p = CreatNode(them);
-     
         //them node p vao queue
             add(q,p);
-            
-            // cout << index << endl;
-        
-       
         }
-       
-            
-       
-            
-        
-
 }
-
 // Ham xoa mot node trong queue __ xoa xe co bien so <plate> khoi bai
 int Remove(queue q, char plateToDelete[]){
     node* prev = NULL;
@@ -172,14 +162,11 @@ int Remove(queue q, char plateToDelete[]){
         }
         prev = current;
         current = current->next;
-       
     }
-    
     if (current == NULL) {
         cout << "0" << endl;
         return 0;
     }
-    
     //xoa node
     if (prev == NULL) {
         //node can xoa la node dau tien
@@ -187,13 +174,10 @@ int Remove(queue q, char plateToDelete[]){
     } else {
         prev->next = current->next;
     }
-    
     delete current;
     cout << "1"<< endl;
     return 1;
 }
-
-
 //ham xuat danh sach xe trong queue ra man hinh(nhung khong xoa)
 void list(queue q){
     //duyet tu dau den cuoi hang doi
@@ -201,8 +185,6 @@ void list(queue q){
     if(k == 1) cout << "Danh sach rong!" << endl;
     for(node* p = q.front; p != NULL; p = p->next){
         //hien thi data cua cac node;
-        
-        
         cout << p->data.plate << endl;
     }
    
@@ -221,18 +203,6 @@ int cnt_moto(queue q){
         if(flag == 4) moto++;
     }
     return moto;
-}
-//ham kiem tra xem la xe may hay xe dap
-int checkXe(queue q){
-    char prexd[] = "xxxx"; 
-    for(node* p = q.front; p != NULL; p = p-> next){
-        for(int i = 0; i <4; i++){
-            if(p->data.plate[i] == prexd[i]) return 0;
-            
-        }
-    
-    }
-    return 1;
 }
 int phanloai(char bienso[]){
     char preB[]="xxxx";
@@ -294,57 +264,6 @@ int main(){
 
     int tienxe;
     int tientong;
-    /*
-    int chon;
-    while(1){
-
-    cout << "Menu: Tac vu" << endl; //ok
-    cout << "1. In ra danh sach xe trong bai, theo thu tu cua input" << endl; //ok
-    cout << "2. Tim xe co bien so <plate> " << endl; //ok
-    cout << "3. Cho xe co bien so <plate> vao bai" << endl; //ok
-    cout << "4. Cho xe co bien so <plate> ra khoi bai" << endl; //ok
-    cout << "5. Dem so xe may co trong bai" << endl; //ok
-    cout << "6. Tinh tien gui xe cho xe co bien <plate>" << endl;
-    cout << "7. Tinh tien gui xe thu duoc tu khi bat dau chay truong trinh" << endl;
-    cout << "----------------Nhap lua chon------------------ " << endl; cin >> chon;
-    switch (chon)
-    {
-    case(1):
-        list(q);
-        break;
-    case(2):
-        cout << "Nhap bien so va ma the gui xe can tim : xxxx-xxx.xx " << endl; cin >> cantim;
-        chiso(q, cantim);
-        break;
-    case(3):
-        in(q);
-        break;
-    case(4):
-        cout << "Nhap bien so xe can xoa: xxxx-xxx.xx " << endl; cin >> plateToDelete;
-        Remove(q, plateToDelete);
-        list(q);
-        break;
-    case(5):
-        numMoto = cnt_moto(q);
-        cout << "So xe may co trong bai: " << numMoto << endl;
-        break;
-    case(6):
-        cout << "Nhap bien so xe va ma the gui xe muon tinh tien: xxxx-xxx.xx " << endl; cin >> plateBill;
-        tienxe = bill(q, plateBill);
-        cout << "Tien gui xe: " << tienxe << endl;
-        break;
-    case(7): 
-        tienxe = billall(q);
-        cout << "Tien gui xe tu khi chay chuong trinh: " << tienxe;
-        break;
-    default:
-        cout << "Nhap lua chon: tu '1' den '7' " << endl;
-        break;
-    }
-    }
-
-    */
-
     char time[50], plate[50] ;
     char testcase[10000];
     int index = -1;
@@ -399,37 +318,37 @@ int main(){
                           
                         break;
                     case(4):
-                    while(cin >> testcase){
-                    if(ind == -1){strcpy(xoa.time, testcase);  ind = 1;
-                    }else{
-                        strcpy(xoa.plate, testcase); ind = -1;
-                        Remove(q, xoa.plate);
-                        delete &xoa;
-                        break;
-                    }
-                    }            
-                    break;
+                           while(cin >> testcase){
+                           if(ind == -1){strcpy(xoa.time, testcase);  ind = 1;
+                           }else{
+                           strcpy(xoa.plate, testcase); ind = -1;
+                           Remove(q, xoa.plate);
+                           delete &xoa;
+                           break;
+                           }
+                           }            
+                           break;
                     case(5):
-                    numMoto = cnt_moto(q);
-                    cout << numMoto << endl;
+                           numMoto = cnt_moto(q);
+                           cout << numMoto << endl;
                     case(6):
-                    while(cin >> testcase){
-                    if(ind == -1){strcpy(xoa.time, testcase);  ind = 1;
-                    }else{
-                        strcpy(xoa.plate, testcase); ind = -1;
-                        tienxe = bill(q,xoa);
-                        cout <<tienxe << endl; 
-                        delete &xoa;
-                        break;
-                    }           
-                    }
-                    break;
+                            while(cin >> testcase){
+                            if(ind == -1){strcpy(xoa.time, testcase);  ind = 1;
+                            }else{
+                            strcpy(xoa.plate, testcase); ind = -1;
+                            tienxe = bill(q,xoa);
+                            cout <<tienxe << endl; 
+                            delete &xoa;
+                            break;
+                            }           
+                            }
+                            break;
                     case(7):
-                        tientong = billall(q);
-                    break;  
-                    }
+                           tientong = billall(q);
+                           break;  
+                           }
             case(2): 
-                break;
+                   break;
           }
         }
 
